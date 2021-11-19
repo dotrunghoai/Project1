@@ -53,8 +53,8 @@ function findNumberBySum(numbers, compareNumber) {
 }
 //findNumberBySum(numbers, 8)
 
-// Sắp xếp sử dụng quicksort
-function quickSort(numbers) {
+// Sắp xếp sử dụng Bubble sort
+function bubbleSort(numbers) {
     for (let i = 0; i < numbers.length; i++) {
         for (let j = i + 1; j < numbers.length; j++) {
             if (numbers[i] > numbers[j]) {
@@ -66,7 +66,69 @@ function quickSort(numbers) {
     }
     console.log(numbers);
 }
-//quickSort(numbers)
+//bubbleSort(numbers)
+
+// Sắp xếp sử dụng insert sort
+function insertSort(numbers) {
+    let j
+    for (let i = 1; i < numbers.length; i++) {
+        const element = numbers[i];
+        j = i - 1;
+        while (j >= 0 && numbers[j] > element) {
+            numbers[j + 1] = numbers[j];
+            j = j - 1;
+        }
+        numbers[j + 1] = element;
+    }
+    console.log(numbers)
+}
+// insertSort(numbers);
+
+// Sắp xếp sử dụng quick sort
+function quickSortHandle(numbers) {
+    function swap(items, leftIndex, rightIndex) {
+        const temp = items[leftIndex];
+        items[leftIndex] = items[rightIndex];
+        items[rightIndex] = temp;
+    }
+    function partition(items, left, right) {
+        let pivot = items[Math.floor((right + left) / 2)]; //middle element
+        let i = left; //left pointer
+        let j = right; //right pointer
+        while (i <= j) {
+            while (items[i] < pivot) {
+                i++;
+            }
+            while (items[j] > pivot) {
+                j--;
+            }
+            if (i <= j) {
+                swap(items, i, j); //sawpping two elements
+                i++;
+                j--;
+            }
+        }
+        return i;
+    }
+
+    function quickSort(items, left, right) {
+        var index;
+        if (items.length > 1) {
+            index = partition(items, left, right); //index returned from partition
+            if (left < index - 1) { //more elements on the left side of the pivot
+                quickSort(items, left, index - 1);
+            }
+            if (index < right) { //more elements on the right side of the pivot
+                quickSort(items, index, right);
+            }
+        }
+        return items;
+    }
+    // first call to quick sort
+    const sortedArray = quickSort(numbers, 0, numbers.length - 1);
+    console.log(sortedArray);
+}
+quickSortHandle(numbers);
 
 // Đảo ngược phần tử trong 1 mảng
 function reverseArray(numbers) {
@@ -119,4 +181,31 @@ const obj1 = {
 }
 for (const property in obj1) {
     console.log(obj1[property]);
+}
+
+function findMinInList(numbers) {
+    if (!Array.isArray(numbers)) {
+        console.log('Input is not array')
+    } else if (numbers.length === 0) {
+        console.log('Length array = 0');
+    } else if (numbers.length === 1) {
+        console.log(numbers.length);
+        console.log(numbers[0]);
+        console.log(numbers[0]);
+    } else {
+        let min = numbers[0];
+        for (let i = 1; i < numbers.length; i++) {
+            if (numbers[i] < min) {
+                min = numbers[i];
+            }
+        }
+        console.log(numbers.length);
+        console.log(...numbers);
+        console.log(min);
+    }
+}
+findMinInList(undefined);
+for (let i = 0; i < numbers.length; i++) {
+    const element = numbers[i];
+    console.log(element);
 }

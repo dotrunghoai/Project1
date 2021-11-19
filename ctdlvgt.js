@@ -44,3 +44,5 @@ const filterArr = array1.find(item => item.name == 'name1')
 console.log(filterArr);
 
 // Thêm comment
+
+// Thêm comment 2
